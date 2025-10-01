@@ -8,7 +8,6 @@ import io.opentelemetry.api.metrics.Meter;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -17,7 +16,7 @@ public class MetricsService {
     private final Meter meter;
     private LongCounter requestCounter;
     private DoubleHistogram responseTimeHistogram;
-    private AtomicLong activeUsers;
+    private final AtomicLong activeUsers;
 
     public MetricsService(Meter meter) {
         this.meter = meter;
