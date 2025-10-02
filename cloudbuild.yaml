@@ -3,12 +3,9 @@ steps:
     args: ['clean', 'install']
 
   - id: 'Create image'
-    name: 'gcr.io/$PROJECT_ID/maven-jdk21-builder'
+    name: 'gcr.io/cloud-builders/mvn'
     entrypoint: 'mvn'
     args: [ 'jib:build' ]
-
-images:
-  - 'gcr.io/$PROJECT_ID/otel-spring-boot'
 
 options:
   logging: "CLOUD_LOGGING_ONLY"
