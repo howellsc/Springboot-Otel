@@ -10,3 +10,6 @@ steps:
 
 images:
   - 'gcr.io/$PROJECT_ID/otel-spring-boot'
+
+options:
+  logging: "CLOUD_LOGGING_ONLY"
