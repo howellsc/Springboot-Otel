@@ -1,0 +1,12 @@
+steps:
+  - name: 'gcr.io/cloud-builders/mvn'
+    args: ['clean', 'install']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/otel-spring-boot', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/otel-spring-boot']
+
+images:
+  - 'gcr.io/$PROJECT_ID/otel-spring-boot'
