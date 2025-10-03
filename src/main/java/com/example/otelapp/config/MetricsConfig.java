@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.net.Socket;
 import java.time.Duration;
 
 import static io.opentelemetry.semconv.ResourceAttributes.SERVICE_NAME;
@@ -31,6 +32,12 @@ public class MetricsConfig {
                 .merge(Resource.create(Attributes.of(SERVICE_NAME, "otel-springboot-app")));
 
         LOGGER.info("Using Endpoint URL: {}", otlpEndpoint);
+
+        try (Socket socket = new Socket("otel-collector-0", 4318)) {
+            LOGGER.info("Connected to {}", otlpEndpoint);
+        } catch (Exception e) {
+            LOGGER.error("Connection failed to {}", otlpEndpoint, e);
+        }
 
         OtlpHttpMetricExporter otlpExporter = OtlpHttpMetricExporter.builder()
                 .setEndpoint(otlpEndpoint)
