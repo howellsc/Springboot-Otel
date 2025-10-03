@@ -90,8 +90,8 @@
                 <configuration>
                     <container>
                         <jvmFlags>
-                            <jvmFlag>-Djava.net.preferIPv4Stack=true</jvmFlag>
-                            <jvmFlag>-Djava.net.preferIPv4Addresses=true</jvmFlag>
+                            <jvmFlag>-Djava.net.preferIPv6Addresses=true</jvmFlag>
+                            <jvmFlag>-Djava.net.preferIPv4Addresses=false</jvmFlag>
                         </jvmFlags>
                     </container>
                     <from>
