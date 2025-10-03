@@ -8,6 +8,8 @@ import io.opentelemetry.sdk.OpenTelemetrySdk;
 import io.opentelemetry.sdk.metrics.SdkMeterProvider;
 import io.opentelemetry.sdk.metrics.export.PeriodicMetricReader;
 import io.opentelemetry.sdk.resources.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +21,7 @@ import static io.opentelemetry.semconv.ResourceAttributes.SERVICE_NAME;
 @Configuration
 public class MetricsConfig {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MetricsConfig.class);
     @Value("${otel.exporter.otlp.endpoint:http://localhost:4318/v1/metrics}")
     private String otlpEndpoint;
 
@@ -26,6 +29,8 @@ public class MetricsConfig {
     public OpenTelemetry openTelemetry() {
         Resource resource = Resource.getDefault()
                 .merge(Resource.create(Attributes.of(SERVICE_NAME, "otel-springboot-app")));
+
+        LOGGER.info("Using Endpoint URL: {}", otlpEndpoint);
 
         OtlpHttpMetricExporter otlpExporter = OtlpHttpMetricExporter.builder()
                 .setEndpoint(otlpEndpoint)
