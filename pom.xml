@@ -88,6 +88,12 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.4.5</version>
                 <configuration>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Djava.net.preferIPv4Stack=true</jvmFlag>
+                            <jvmFlag>-Djava.net.preferIPv4Addresses=true</jvmFlag>
+                        </jvmFlags>
+                    </container>
                     <from>
                         <image>openjdk:21-slim</image>
                     </from>
