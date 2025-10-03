@@ -88,12 +88,11 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.4.5</version>
                 <configuration>
-                    <!--container>
+                    <container>
                         <jvmFlags>
-                            <jvmFlag>-Djava.net.preferIPv6Addresses=true</jvmFlag>
-                            <jvmFlag>-Djava.net.preferIPv4Addresses=false</jvmFlag>
+                            <jvmFlag>-Dspring.profiles.active=gce</jvmFlag>
                         </jvmFlags>
-                    </container-->
+                    </container>
                     <from>
                         <image>openjdk:21-slim</image>
                     </from>
